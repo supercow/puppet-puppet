@@ -1,8 +1,6 @@
 # Private class
 class puppet::config {
 
-  include puppet::agent
-
   Ini_setting {
     path    => $puppet::conf,
     ensure  => 'present',
