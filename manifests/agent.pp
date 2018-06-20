@@ -49,8 +49,8 @@
 # Default: false
 #
 # [*configtimeout*]
-# The configtimeout variable in puppet.conf
-# Default: 360
+# The configtimeout variable in puppet.conf (deprecated)
+# Default: undef
 #
 # [*usecacheonfailure*]
 # The usecacheonfailure variable in puppet.conf
@@ -82,23 +82,25 @@
 #  }
 #
 class puppet::agent (
-  $ensure            = 'present',
-  $server            = 'puppet',
-  $ca_server         = undef,
-  $report            = true,
-  $report_server     = undef,
-  $manage_repos      = false,
-  $environment       = $::environment,
-  $pluginsync        = true,
-  $certname          = $::clientcert,
-  $show_diff         = false,
-  $splay             = false,
-  $configtimeout     = 360,
-  $usecacheonfailure = true,
-  $runinterval       = undef,
-  $method            = $puppet::params::default_method,
-  $manage_package    = true,
-  $package           = $puppet::params::agent_package,
+  $ensure               = 'present',
+  $server               = 'puppet',
+  $ca_server            = undef,
+  $report               = true,
+  $report_server        = undef,
+  $manage_repos         = false,
+  $environment          = $::environment,
+  $pluginsync           = true,
+  $certname             = $::clientcert,
+  $show_diff            = false,
+  $splay                = false,
+  $configtimeout        = undef,
+  $http_read_timeout    = '2m',
+  $http_connect_timeout = '2m',
+  $usecacheonfailure    = true,
+  $runinterval          = undef,
+  $method               = $puppet::params::default_method,
+  $manage_package       = true,
+  $package              = $puppet::params::agent_package,
 ) inherits puppet::params {
 
   validate_bool($report)

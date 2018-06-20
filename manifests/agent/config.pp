@@ -68,8 +68,22 @@ class puppet::agent::config {
   }
 
   ini_setting { 'configtimeout':
+    ensure  => $puppet::agent::configtimeout ? {
+      undef   => 'absent',
+      default => 'present',
+    },
     setting => 'configtimeout',
     value   => $puppet::agent::configtimeout,
+  }
+
+  ini_setting { 'http_connect_timeout':
+    setting => 'http_connect_timeout',
+    value   => $puppet::agent::http_connect_timeout,
+  }
+
+  ini_setting { 'http_read_timeout':
+    setting => 'http_read_timeout',
+    value   => $puppet::agent::http_read_timeout,
   }
 
   ini_setting { 'usecacheonfailure':
